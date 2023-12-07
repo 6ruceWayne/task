@@ -1,4 +1,4 @@
-<h1 align="center">Hi there, here is your documentation 
+<h1 align="center">Hi there, here is your deploy instruction 
 <img src="https://github.com/blackcater/blackcater/raw/main/images/Hi.gif" height="32"/></h1>
 <h5>Before the installation you MUST have docker preinstalled!</h5> 
 <br>
