@@ -54,7 +54,7 @@ class TasksController extends Controller
     {
         $dto = new TaskGetBySearchFilterDTO($taskGetBySearchFilterRequest->validated());
         return $this->getSuccessResponse(
-            TaskResource::collection($this->tasksService->getPaginatedBySearchFilter($dto))
+            TaskResource::collection($this->tasksService->getBySearchFilter($dto))
         );
     }
 
