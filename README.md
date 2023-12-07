@@ -38,19 +38,16 @@ DB_CONNECTION=mysql
 DB_HOST=mysql
 </li>
 <li>
-Run 'php artisan migrate' command
+Run './vendor/bin/sail up' command
 </li>
 <li>
-Run './vendor/bin/sail up' command
+Run 'php artisan migrate' command
 </li>
 <li>
 Run 'php artisan passport:keys' command
 </li>
 <li>
 Run 'php artisan db:seed' command
-</li>
-<li>
-Run './vendor/bin/sail up' command
 </li>
 </ui>
 
