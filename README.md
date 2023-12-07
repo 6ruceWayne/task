@@ -23,7 +23,7 @@ Rename '.env.example' to '.env'
 Run 'php artisan l5-swagger:generate' command
 </li>
 <li>
-Run 'php artisan sail:install' command
+Run 'php artisan sail:install' command, choose '0' as mysql
 </li>
 <li>
 Change the next params in '.env' file:
