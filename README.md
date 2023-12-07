@@ -55,12 +55,13 @@ Run under shell 'php artisan db:seed' command
 </ui>
 
 Link to the project:
-'http://localhost:8080/'
-Login to test user. Email: 'test@test.com', password: 123456789.
+'http://localhost:8080/' <br>
+Login to test user. Email: 'test@test.com', password: 123456789.<br>
 On the main page you will have 30 paginated tasks. Click on them will uncover sub tasks
 
-Link to Swagger doc will be there:
+Link to Swagger doc will be there:<br>
 http://localhost:8080/api/documentation#/default
 
-If you're gonna check API end points with Postman or anything else don't forget to get Bearer Token for auth!
+If you're gonna check API end points with Postman or anything else don't forget to get Bearer Token for auth!<br>
+Enjoy!
 
