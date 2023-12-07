@@ -53,7 +53,7 @@ Run under shell 'php artisan migrate' command
 Run under shell 'php artisan db:seed' command
 </li>
 </ui>
-
+<br><br><br>
 Link to the project:
 'http://localhost:8080/' <br>
 Login to test user. Email: 'test@test.com', password: 123456789.<br>
