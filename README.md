@@ -41,6 +41,9 @@ DB_HOST=mysql
 Run 'php artisan migrate' command
 </li>
 <li>
+Run './vendor/bin/sail up' command
+</li>
+<li>
 Run 'php artisan passport:keys' command
 </li>
 <li>
