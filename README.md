@@ -41,18 +41,23 @@ DB_HOST=mysql
 Run './vendor/bin/sail up' command
 </li>
 <li>
-Run 'php artisan migrate' command
+Exit from previous command
 </li>
 <li>
-Run 'php artisan passport:keys' command
+Enter in shell by running command './vendor/bin/sail shell'
 </li>
 <li>
-Run 'php artisan db:seed' command
+Run under shell 'php artisan migrate' command
+</li>
+<li>
+Run under shell 'php artisan db:seed' command
 </li>
 </ui>
 
 Link to the project:
 'http://localhost:8080/'
+Login to test user. Email: 'test@test.com', password: 123456789.
+On the main page you will have 30 paginated tasks. Click on them will uncover sub tasks
 
 Link to Swagger doc will be there:
 http://localhost:8080/api/documentation#/default
