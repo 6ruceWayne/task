@@ -23,15 +23,6 @@ Rename '.env.example' to '.env'
 Run 'php artisan l5-swagger:generate' command
 </li>
 <li>
-Run 'php artisan passport:keys' command
-</li>
-<li>
-Run 'php artisan migrate' command
-</li>
-<li>
-Run 'php artisan db:seed' command
-</li>
-<li>
 Run 'php artisan sail:install' command
 </li>
 <li>
@@ -45,6 +36,15 @@ DB_CONNECTION=mysql
 </li>
 <li>
 DB_HOST=mysql
+</li>
+<li>
+Run 'php artisan migrate' command
+</li>
+<li>
+Run 'php artisan passport:keys' command
+</li>
+<li>
+Run 'php artisan db:seed' command
 </li>
 <li>
 Run './vendor/bin/sail up' command
