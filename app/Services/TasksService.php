@@ -8,6 +8,7 @@ use App\DTO\Tasks\TaskUpdateDTO;
 use App\Enums\TaskStatusEnum;
 use App\Models\Task;
 use App\Repositories\TasksRepository;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 
 class TasksService
@@ -37,14 +38,14 @@ class TasksService
         return $this->tasksRepository->getById($id);
     }
 
-    public function getPaginated(): LengthAwarePaginator
-    {
-        return $this->tasksRepository->getPaginated();
-    }
-
     public function getPaginatedBySearchFilter(TaskGetBySearchFilterDTO $taskGetBySearchFilterDTO): LengthAwarePaginator
     {
         return $this->tasksRepository->getPaginatedBySearchFilter($taskGetBySearchFilterDTO);
+    }
+
+    public function getBySearchFilter(TaskGetBySearchFilterDTO $taskGetBySearchFilterDTO): Collection
+    {
+        return $this->tasksRepository->getBySearchFilter($taskGetBySearchFilterDTO);
     }
 
     public function destroy(int $id): void

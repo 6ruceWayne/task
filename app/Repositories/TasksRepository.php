@@ -8,6 +8,8 @@ use App\DTO\Tasks\TaskUpdateDTO;
 use App\Enums\TaskStatusEnum;
 use App\Models\Task;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Auth;
 
@@ -31,6 +33,61 @@ class TasksRepository
     }
 
     public function getPaginatedBySearchFilter(TaskGetBySearchFilterDTO $taskGetBySearchFilterDTO): LengthAwarePaginator
+    {
+        return $this->getBuilderBySearchFilter($taskGetBySearchFilterDTO)
+            ->paginate(self::PAGINATION_AMOUNT);
+    }
+
+    public function getBySearchFilter(TaskGetBySearchFilterDTO $taskGetBySearchFilterDTO): Collection
+    {
+        return $this->getBuilderBySearchFilter($taskGetBySearchFilterDTO)->get();
+    }
+
+    public function store(TaskStoreDTO $taskCreateDTO): Task
+    {
+        return Task::create(
+            [
+                'status' => TaskStatusEnum::ToDo,
+                'priority' => $taskCreateDTO->getTaskPriorityEnum(),
+                'title' => $taskCreateDTO->getTitle(),
+                'description' => $taskCreateDTO->getDescription(),
+                'userId' => $taskCreateDTO->getUserId(),
+                'parentId' => $taskCreateDTO->getParentId(),
+                'createdAt' => new Carbon()
+            ]
+        );
+    }
+
+    public function update(TaskUpdateDTO $taskUpdateDTO): Task
+    {
+        Task::where('id', '=', $taskUpdateDTO->getId())
+            ->update(
+                [
+                    'status' => $taskUpdateDTO->getStatus(),
+                    'priority' => $taskUpdateDTO->getPriority(),
+                    'title' => $taskUpdateDTO->getTitle(),
+                    'description' => $taskUpdateDTO->getDescription(),
+                ]
+            );
+        return $this->getById($taskUpdateDTO->getId());
+    }
+
+    public function setClosedAtTime(int $id): Task
+    {
+        return Task::where('id', '=', $id)
+            ->update(
+                [
+                    'completedAt' => new Carbon(),
+                ]
+            );
+    }
+
+    public function destroy(int $id): void
+    {
+        Task::destroy($id);
+    }
+
+    private function getBuilderBySearchFilter(TaskGetBySearchFilterDTO $taskGetBySearchFilterDTO): Builder
     {
         return Task::where('parentId', '=', null)
             ->where('userId', '=', Auth::id())
@@ -82,51 +139,6 @@ class TasksRepository
                         $taskGetBySearchFilterDTO->getSortByCompletedAt() ? 'ASC' : 'DESC'
                     );
                 }
-            )
-            ->paginate(self::PAGINATION_AMOUNT);
-    }
-
-    public function store(TaskStoreDTO $taskCreateDTO): Task
-    {
-        return Task::create(
-            [
-                'status' => TaskStatusEnum::ToDo,
-                'priority' => $taskCreateDTO->getTaskPriorityEnum(),
-                'title' => $taskCreateDTO->getTitle(),
-                'description' => $taskCreateDTO->getDescription(),
-                'userId' => $taskCreateDTO->getUserId(),
-                'parentId' => $taskCreateDTO->getParentId(),
-                'createdAt' => new Carbon()
-            ]
-        );
-    }
-
-    public function update(TaskUpdateDTO $taskUpdateDTO): Task
-    {
-        Task::where('id', '=', $taskUpdateDTO->getId())
-            ->update(
-                [
-                    'status' => $taskUpdateDTO->getStatus(),
-                    'priority' => $taskUpdateDTO->getPriority(),
-                    'title' => $taskUpdateDTO->getTitle(),
-                    'description' => $taskUpdateDTO->getDescription(),
-                ]
             );
-        return $this->getById($taskUpdateDTO->getId());
-    }
-
-    public function setClosedAtTime(int $id): Task
-    {
-        return Task::where('id', '=', $id)
-            ->update(
-                [
-                    'completedAt' => new Carbon(),
-                ]
-            );
-    }
-
-    public function destroy(int $id): void
-    {
-        Task::destroy($id);
     }
 }
