@@ -40,6 +40,13 @@ class TasksController extends Controller
      * @OA\GET(
      *     path="/tasks/getBySearchFilter",
      *     summary="Get tasks by search by text, status and priority. Also sort by status, priority, createdAt and completedAt",
+     *     @OA\Parameter(name="byText", in="query", required=false, @OA\Schema(type="string")),
+     *     @OA\Parameter(name="byStatus", in="query", required=false, @OA\Schema(type="string")),
+     *     @OA\Parameter(name="byPriority", in="query", required=false, @OA\Schema(type="integer")),
+     *     @OA\Parameter(name="sortByStatus", in="query", required=false, @OA\Schema(type="boolean")),
+     *     @OA\Parameter(name="sortByPriority", in="query", required=false, @OA\Schema(type="boolean")),
+     *     @OA\Parameter(name="sortByCreatedAt", in="query", required=false, @OA\Schema(type="boolean")),
+     *     @OA\Parameter(name="sortByCompletedAt", in="query", required=false, @OA\Schema(type="boolean")),
      *     @OA\Response(response=200, description="Successful operation",
      *     @OA\JsonContent(
      *       @OA\Property (property="data", type="array",
